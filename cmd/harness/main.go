@@ -21,6 +21,7 @@ func main() {
 		newInitCmd(),
 		newNewSpecCmd(),
 		newReviewCmd(),
+		newGuideCmd(),
 	)
 
 	if err := root.Execute(); err != nil {
