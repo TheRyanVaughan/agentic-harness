@@ -1,0 +1,16 @@
+[defaults]
+backend = "claude"
+model = "opus"
+budget_usd = 5.00
+max_retries = 3
+max_turns = 50
+timeout = "10m"
+verify_cmd = "just verify"
+
+[review]
+model = "sonnet"
+budget_usd = 2.00
+
+# [routing]
+# Optional: override model per task pattern
+# Not implemented in v1, but the config shape is ready

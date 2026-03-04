@@ -1,0 +1,12 @@
+# Verification suite — customize per repo
+
+verify: lint typecheck test
+
+lint:
+    echo "TODO: add linter (e.g., ruff check .)"
+
+typecheck:
+    echo "TODO: add type checker (e.g., mypy src/)"
+
+test:
+    echo "TODO: add test runner (e.g., pytest tests/)"
