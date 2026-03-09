@@ -32,6 +32,7 @@ type RunOpts struct {
 type ReviewOpts struct {
 	DiffFile  string
 	StyleFile string // path to STYLE.md, may be empty
+	SpecFile  string // path to the task spec, may be empty
 	WorkDir   string
 	Model     string
 	BudgetUSD float64

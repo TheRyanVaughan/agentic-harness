@@ -25,23 +25,26 @@ type Reviewer struct {
 	model     string
 	budgetUSD float64
 	styleFile string
+	specFile  string
 }
 
 // NewReviewer creates a new Reviewer.
-func NewReviewer(b backend.Backend, model string, budgetUSD float64, styleFile string) *Reviewer {
+func NewReviewer(b backend.Backend, model string, budgetUSD float64, styleFile, specFile string) *Reviewer {
 	return &Reviewer{
 		backend:   b,
 		model:     model,
 		budgetUSD: budgetUSD,
 		styleFile: styleFile,
+		specFile:  specFile,
 	}
 }
 
-// Run performs a code review on the given diff file.
+// Run performs a two-stage code review (spec compliance + code quality) on the given diff file.
 func (r *Reviewer) Run(ctx context.Context, diffFile, workDir string) (*Result, error) {
 	runResult, err := r.backend.ReviewRun(ctx, backend.ReviewOpts{
 		DiffFile:  diffFile,
 		StyleFile: r.styleFile,
+		SpecFile:  r.specFile,
 		WorkDir:   workDir,
 		Model:     r.model,
 		BudgetUSD: r.budgetUSD,

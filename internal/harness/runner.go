@@ -94,6 +94,7 @@ func NewRunner(opts RunnerOpts) (*Runner, error) {
 		opts.Config.Review.Model,
 		opts.Config.Review.BudgetUSD,
 		styleFile,
+		opts.SpecFile,
 	)
 
 	r := &Runner{

@@ -77,14 +77,7 @@ func (c *Claude) ReviewRun(ctx context.Context, opts ReviewOpts) (*RunResult, er
 		return nil, fmt.Errorf("reading diff file: %w", err)
 	}
 
-	prompt := fmt.Sprintf("Review this diff for code quality issues. If everything looks good, respond with exactly 'LGTM'. Otherwise, list specific issues.\n\n```diff\n%s\n```", string(diff))
-
-	if opts.StyleFile != "" {
-		styleContent, err := os.ReadFile(opts.StyleFile)
-		if err == nil && len(styleContent) > 0 {
-			prompt = fmt.Sprintf("Use these style rules when reviewing:\n\n%s\n\n%s", string(styleContent), prompt)
-		}
-	}
+	prompt := buildReviewPrompt(string(diff), opts.StyleFile, opts.SpecFile)
 
 	args := []string{
 		"-p", prompt,

@@ -65,7 +65,8 @@ func newReviewCmd() *cobra.Command {
 				styleFile = ""
 			}
 
-			reviewer := review.NewReviewer(b, cfg.Review.Model, cfg.Review.BudgetUSD, styleFile)
+			// Standalone review has no spec file — pass empty string
+		reviewer := review.NewReviewer(b, cfg.Review.Model, cfg.Review.BudgetUSD, styleFile, "")
 
 			ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 			defer cancel()
